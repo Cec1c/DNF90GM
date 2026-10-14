@@ -1,0 +1,28 @@
+name: Verify
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff
+        with:
+          go-version-file: go.mod
+      - run: python3 scripts/check_boundary.py
+      - run: go test -buildvcs=false -count=1 ./...
+      - run: go vet ./...
+      - run: python3 scripts/test_mysql.py
+      - run: python3 -m pip install playwright
+      - run: python3 -m playwright install --with-deps chromium
+      - run: python3 scripts/test_browser.py
+      - run: python3 scripts/build.py linux amd64
+      - run: python3 scripts/build.py windows amd64
+      - run: docker build -t dnf90gm-ci .

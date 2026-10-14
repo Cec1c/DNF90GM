@@ -1,0 +1,9 @@
+.git
+runtime
+dist
+.cache
+.env
+*.local.json
+**/*.pvf
+**/*.db
+**/__pycache__

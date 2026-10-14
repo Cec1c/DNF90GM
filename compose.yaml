@@ -1,0 +1,27 @@
+services:
+  gm:
+    image: dnf90gm:local
+    build: .
+    init: true
+    restart: unless-stopped
+    network_mode: host
+    user: "${GM_UID:-10001}:${GM_GID:-10001}"
+    environment:
+      GOMEMLIMIT: 640MiB
+    mem_limit: 1g
+    command: ["--config", "/config/gm.json", "--init-schema"]
+    volumes:
+      - "${GM_CONFIG_FILE:?Set an absolute protected config path}:/config/gm.json:ro"
+      - "${GM_PVF_FILE:?Set an absolute PVF path}:/assets/Script.pvf:ro"
+      - "${GM_STATE_DIR:?Set an absolute persistent state directory}:/runtime"
+    healthcheck:
+      test: ["CMD", "wget", "-Y", "off", "-q", "-O", "/dev/null", "http://127.0.0.1:18112/api/status"]
+      start_period: 180s
+      interval: 15s
+      timeout: 5s
+      retries: 12
+    logging:
+      driver: json-file
+      options:
+        max-size: 20m
+        max-file: "3"
