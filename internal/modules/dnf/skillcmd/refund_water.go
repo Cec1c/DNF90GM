@@ -10,7 +10,7 @@
 // op29 失败码 3（86JP BuySkillService.ExecuteWithRefundConsumable 口径）。
 //
 // 默认（改动后行为）：refund 条目按请求等级下调并退还差额 SP，不收遗忘河之水。
-// 依据是同一份代码基线的**厂商 9.16 运行时实测**（D:\DNF90-test）：
+// 依据是同一份代码基线的**厂商 9.16 运行时实测**（reference-runtime）：
 // packet_log.txt:14674 请求 hex=...1900010100（skill=25 refund=1 delta=1），
 // 14677 应答 reason=applied buy_skill: char=1 tree=0 entries=1 remainSP=120
 // remainTP=0 refund_water=false，随后 14679 才回 class1/op29 成功体

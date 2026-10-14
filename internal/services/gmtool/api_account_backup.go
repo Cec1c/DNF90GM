@@ -8,7 +8,7 @@ package gmtool
 // ---------------------------------------------------------------------------
 // 参考实现（只读）与逐段对应关系
 // ---------------------------------------------------------------------------
-// A21 = `H:\86JP启动器\GM工具搭建包_含源码与发布版\源码-86jp_DfoGmTool-main\Services\GmService.AccountBackup.cs`
+// A21 = `86jp_DfoGmTool/Services/GmService.AccountBackup.cs`
 //
 //	A21:14         AccountBackupVersion（本文件 backupFormatVersion）
 //	A21:16-18      标识符白名单正则（本文件 backupIdentifierPattern）

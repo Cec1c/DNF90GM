@@ -25,7 +25,7 @@ import (
 //     具名拒绝 + 零写入。
 //
 // 基线取证：默认档的 golden 字符串与"开关 on/off 逐字节相同"这两条，都是从**改前树**
-// （H:\86JP启动器\.dsh-tmp\p6b-baseline\go-server，P6 落定快照）上同一份探针跑出来的原文
+// （P6 baseline/go-server，P6 落定快照）上同一份探针跑出来的原文
 // 对比得来的，见交付报告 §4。
 
 // p6bParentQuestSource 在 P6 夹具（4010 家族 + 4013 链外）之上补齐"父任务入口"要用的格子：

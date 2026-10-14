@@ -9,7 +9,7 @@
 //     `Game\Inventory\Repositories\EpicPieceBookRepository.cs:8,21-24,47-50`），
 //     按 **AccountId** 加载（`Services\InventoryService.cs:627`）；
 //     `Docs\新版背包架构业务接入规范.md:337-338` 明写"史诗碎片…是账号级史诗图鉴数量"。
-//  2. 厂商 9.16 参考服务端（`D:\DNF90-test\server\runtime\logs\packet_log.txt`，只读）：
+//  2. 厂商 9.16 参考服务端（`reference-runtime/packet_log.txt`，只读）：
 //     `EVENT kind=dnf-epic-book-catalog-loaded entries=966`（与我们真档 PVF 解析出的
 //     966 组二元组**逐数相等**），并且 7/7 条
 //     `EVENT kind=game-epic-book-snapshot-sent … account_id=dnf:<hash> wire_opcode=1149`

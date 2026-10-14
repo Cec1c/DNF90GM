@@ -16,7 +16,7 @@ package gmtool
 //	                的行才走 :712 的 `配置` 按钮 → 浮层卡片（对话框）。
 //	所以同一张列表里，"能填参数"和"点了就发"是两套行为，操作者点的那一行恰好是后者。
 //
-// 上游 A21 GM 工具（`H:\86JP启动器\Temp\gm-upstream-v260910\wwwroot\js\give.js:516-598`）
+// 上游 A21 GM 工具（`86jp_DfoGmTool/wwwroot/js/give.js:516-598`）
 // 的"发放对话框"就是这张浮层卡片（`#give-config-card` + floating-config.js，
 // 本仓逐字沿用同一套 DOM/CSS），字段集与语义见：
 //

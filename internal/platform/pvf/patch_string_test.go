@@ -234,7 +234,7 @@ func isPrintableASCII(value string) bool {
 
 // TestRealScriptPVFPatchScriptStringRoundTrip 对真实 Script.pvf 的 TempDir
 // 副本执行字符串引用补丁并回开验证；原始文件绝不写入。门控：
-// DNFBRIDGE_REAL_PVF_SMOKE=D:/DNF/runtime/data/dnf/Script.pvf。
+// DNFBRIDGE_REAL_PVF_SMOKE=/path/to/Script.pvf。
 func TestRealScriptPVFPatchScriptStringRoundTrip(t *testing.T) {
 	pvfPath := os.Getenv("DNFBRIDGE_REAL_PVF_SMOKE")
 	if pvfPath == "" {

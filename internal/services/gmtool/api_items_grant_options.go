@@ -2,7 +2,7 @@ package gmtool
 
 // J13：发放 option（expire_days / reinforce / amplify_type / equipment_quality / forging_level）。
 //
-// 上游依据（UP = `H:\86JP启动器\90CN\90原神开源0.1.8\dnf90-source-oneclick-main\go-server`）：
+// 上游依据（UP = `dnf90-source-oneclick/go-server`）：
 //
 //	UP internal/services/dnfbridge/gm.go:1780-1947  GMSendItemMailWithOptions 的 option 段
 //	  :1805        装备 + count != 1 -> 明确拒绝

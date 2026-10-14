@@ -227,7 +227,7 @@ func applyBuyOwner(ctx context.Context, req alignedcmd.Request, cmd Command, par
 		// 降级（refund 条目）把等级写低后也必须重画技能页：op29 的 ACK 只带本
 		// 批次条目，客户端要按持久化等级重建技能列表、被动加成和 SP 显示，否则
 		// 面板继续显示旧等级（现场：改成 18 后点学习又变回 20）。厂商 9.16 在同
-		// 一位置发 op19（D:\DNF90-test runtime packet_log.txt:14670/14697
+		// 一位置发 op19（reference-runtime runtime packet_log.txt:14670/14697
 		// post_action=refresh_selected_actor_skills，随后
 		// source=aligned_buy_skill_after_ack 的 game-main-skill-info-send）。
 		// 纯升级批次不带该 action，升级路径逐字节不变。

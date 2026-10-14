@@ -12,6 +12,10 @@ Test paths were adapted to those pinned fixtures; no game application or bridge
 is linked into GM. The manifest records the extraction baseline, not a claim
 that later changes retain those original hashes.
 
+After extraction, inherited workstation paths in source comments were replaced
+with relative project references. Initial hashes remain as historical provenance;
+these comment edits do not change the executable or its data contract.
+
 Shared repository/domain adapters are an explicitly pinned source snapshot,
 not a second independently invented asset or wallet implementation. Keep their
 transaction boundaries and document intentional changes in the changelog.

@@ -2,7 +2,7 @@ package gmtool
 
 // J14（剩余部分）：GET /api/accounts 的跨账号检索。
 //
-// 上游依据（UP = `H:\86JP启动器\90CN\90原神开源0.1.8\dnf90-source-oneclick-main\go-server`）：
+// 上游依据（UP = `dnf90-source-oneclick/go-server`）：
 //
 //	UP internal/modules/dnf/repository/account_repository.go:120-142
 //	   ListAccounts(ctx, repo, query, limit)：repo 未实现 AccountLister -> ErrAccountListUnavailable；
