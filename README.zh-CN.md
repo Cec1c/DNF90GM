@@ -6,14 +6,14 @@
 ![数据库](https://img.shields.io/badge/Database-MariaDB-003545?style=flat-square&logo=mariadb)
 ![平台](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux-2563EB?style=flat-square)
 
-面向 ServerS5A3 90CN 的独立 Web GM：管理账号角色、查询 PVF 物品，通过邮件发放可重复补发且自动去重的福利。
+在浏览器中管理 ServerS5A3 90CN 账号、查询 PVF 物品并发放邮件福利。福利规则保存每个角色的发放记录，重复执行时自动跳过已发角色。
 
 [English](README.md) ｜ [快速开始](#快速开始) ｜ [部署说明](docs/DEPLOYMENT.md) ｜ [旧版迁移](docs/MIGRATION.md)
 
 </div>
 
 > [!IMPORTANT]
-> 需要兼容的 ServerS5A3 MariaDB 表结构、匹配的 PVF 和游戏私有管理 API v1。仓库不包含游戏素材、玩家数据库或部署凭据。适用版本见[兼容契约](docs/COMPATIBILITY.md)。
+> 部署前准备兼容的 ServerS5A3 MariaDB 数据库、匹配的 PVF，以及游戏私有管理 API v1 的访问凭据。适用版本见[兼容契约](docs/COMPATIBILITY.md)。
 
 ## 能做什么
 
@@ -23,8 +23,8 @@
 - 复用原规则跳过已发角色；重启、领取或删除邮件后仍保留去重记录。
 - 通过鉴权的游戏私有接口查询在线状态、读取和修改活动配置。
 
-当前**每条福利规则包含一种物品**。多个物品可建立多条规则，各发一封邮件。
-新建规则表示新一轮奖励，不共享旧规则的发放记录。详见[福利规则说明](docs/BENEFITS.md)。
+**每条福利规则发送一种物品、一封邮件。** 发放多个物品时分别建规则；补发同一轮福利时复用原规则。
+新规则会建立独立的发放记录，表示新一轮奖励。详见[福利规则说明](docs/BENEFITS.md)。
 
 ## 快速开始
 
@@ -52,13 +52,13 @@ dist/windows-amd64/DNF90GM.exe --config runtime/gm.json --init-schema
 Windows 也可使用 `BUILD.bat`、`START_GM.bat`。[部署说明](docs/DEPLOYMENT.md)
 包含二进制运行、Linux Docker、私有访问方式和各配置字段。
 
-## 独立边界
+## GM 与游戏如何协作
 
 GM 自己管理 HTTP、鉴权、PVF 索引、批量任务和扫描。游戏负责登录、创建角色、玩法与领取邮件。
 GM 通过既有 MariaDB 资产事务访问数据，通过游戏私有接口获取运行时状态。
 
-本仓使用独立 Go module，并保留明确版本的业务/仓储兼容代码，构建无需服务端源码目录或相对路径依赖。
-登录器管理 Hub 及其记住 token 功能属于可选外部集成。
+本仓使用独立 Go module，内置固定版本的业务与仓储兼容代码，可单独构建和部署。
+需要登录器管理 Hub 或记住 token 登录时，可接入对应的外部集成。
 已有服务迁移时，按[迁移说明](docs/MIGRATION.md)保留规则 ID、注册额度快照与全部发放回执。
 
 ## 开发验证
@@ -70,13 +70,12 @@ go vet ./...
 python scripts/test_mysql.py
 ```
 
-最后一条会创建并移除一次性 MariaDB Docker 容器。测试 DSN 不得指向玩家数据库。
-页面验证先安装 `playwright` 和 Chromium，再执行 `python scripts/test_browser.py`；
-请求使用模拟数据，不向真实玩家发奖。`python scripts/package.py v0.1.0` 生成双平台发行包。
+数据库测试使用最后一条命令创建的一次性 MariaDB Docker 容器，结束后自动移除；测试 DSN 仅连接测试库。
+页面验证先安装 `playwright` 和 Chromium，再执行 `python scripts/test_browser.py`，使用模拟请求检查页面。
+`python scripts/package.py v0.1.0` 生成双平台发行包。
 
 ## 来源
 
 提取自 [Cec1c/ServerS5A3](https://github.com/Cec1c/ServerS5A3)，源自
 [16ww/servers5a3](https://gitgud.io/16ww/servers5a3)。来源路径和摘要见
-[PROVENANCE.md](docs/PROVENANCE.md)，署名与许可现状见 [NOTICE.md](NOTICE.md)；
-没有为迁入代码擅自指定新的许可证。
+[PROVENANCE.md](docs/PROVENANCE.md)。迁入代码沿用原有署名与许可状态，详见 [NOTICE.md](NOTICE.md)。
